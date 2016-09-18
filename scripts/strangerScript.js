@@ -33,8 +33,11 @@ window.startStranger = function start() {
 // Kick off the animation
 function startAnimation() {
   // In milliseconds, how long each one is
+  var timeFactor = 1;
   var creditsMs = 3000;
   var scenesMs = [creditsMs, creditsMs * 2, creditsMs, creditsMs, creditsMs, creditsMs, creditsMs * 2, 19500];
+  scenesMs = scenesMs.map(time => time * timeFactor);
+  creditsMs *= timeFactor;
 
   // Elements
   var viewport = document.getElementsByClassName("viewport")[0];
@@ -92,7 +95,7 @@ function startAnimation() {
       // Show the final credits
       setTimeout(function () {
         finalCredit.className += " credits-group--show";
-      }, offset + scenesMs[_i + 1] + 1500);
+      }, offset + scenesMs[_i + 1] + (1500 * timeFactor));
     }
   };
 
